@@ -1,0 +1,6 @@
+module Pods_Button2 {
+  umbrella header "Pods-Button2-umbrella.h"
+
+  export *
+  module * { export * }
+}
