@@ -25,7 +25,7 @@ const AppNavigation = () => {
         <Stack.Screen
           name={"RecyclerListViewWithoutPagination"}
           component={RecyclerListViewWithoutPagination}
-          options={{title: "Without Pagination", headerTitle: null}}
+          options={{title: "Without Pagination"}}
         />
       </Stack.Navigator>
     </NavigationContainer>

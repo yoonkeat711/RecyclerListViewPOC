@@ -56,11 +56,11 @@ const RecyclerListViewPagination = () => {
     }
   }, (type, dim, index) => {
     if (index === 0) {
-      dim.height = Dimensions.get('window').height / 20;
+      dim.height = 50;
       dim.width = Dimensions.get('window').width;
     }
     else {
-      dim.height = Dimensions.get('window').height / 12; // height have to set smaller if using forceNonDeterministicRendering otherwise, seems to default to this height if cell is lesses height
+      dim.height = Dimensions.get('window').height / 10; // height have to set smaller if using forceNonDeterministicRendering otherwise, seems to default to this height if cell is lesses height
       dim.width = Dimensions.get('window').width;
     }
   });
@@ -80,7 +80,6 @@ const RecyclerListViewPagination = () => {
         <View style={{ height: 100 }} />
       )
     }
-    console.log(data.quoteText);
     return (
       <RectangleButton
         icon={mountain}
@@ -96,7 +95,7 @@ const RecyclerListViewPagination = () => {
     if (page < TOTAL_PAGE) {
       return (
         <View style={{height: 60}}>
-        <UIActivityIndicator size={40} />
+        <UIActivityIndicator size={30} />
         </View>
       )
     }
