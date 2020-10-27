@@ -54,7 +54,7 @@ const RecyclerListViewPagination = () => {
      thus, make an empty header here and render from overrrideRowRenderer */
     if (index === 0) {
       return (
-        <View style={{ height: 50, backgroundColor: 'red' }} />
+        <View style={{ height: 50, flex: 1 }} />
       )
     }
     return (
@@ -102,8 +102,6 @@ const RecyclerListViewPagination = () => {
               rowRenderer={rowRender}
               renderFooter={renderFooter}
               forceNonDeterministicRendering={true}
-              applyWindowCorrection={{windowShift: {top: 100}}}
-
             />
           </StickyContainer>
         </SafeAreaView>
