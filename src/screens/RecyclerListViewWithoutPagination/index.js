@@ -23,7 +23,6 @@ import RectangleButton from './../../Button/RectangleButton';
 import mountain from './../../assets/mountain.jpeg';
 import { MODE, ICON_POSITION } from './../../constants/ButtonEnums';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { UIActivityIndicator } from 'react-native-indicators';
 import mockData from './mockData';
 
 const RecyclerListViewPagination = () => {
@@ -32,38 +31,21 @@ const RecyclerListViewPagination = () => {
     return r1 !== r2;
   });
 
-  const TOTAL_PAGE = 7810;
-//   const [page, setPage] = useState(7800);
-//   const [data, setData] = useState([]);
   //Note: workaround here, dataProvider seems need to have data once initial because of layoutProvider cant read
-  const [dataProvider, setDataProvider] = useState(dataProviderObject.cloneWithRows(mockData));
-
-//   useEffect(() => {
-//     fetchData();
-//   }, [page])
-
-//   const fetchData = useCallback(() => {
-//     fetch('https://quote-garden.herokuapp.com/api/v2/quotes?page=' + page + '&limit=20')
-//       .then((response) => response.json())
-//       .then((result) => {
-//         setData(data.concat(result.quotes));
-//         setDataProvider(dataProviderObject.cloneWithRows(data.concat(result.quotes)));
-//       })
-//   }, [page]);
+  const [dataProvider, setDataProvider] = useState(dataProviderObject.cloneWithRows([{body: null}].concat(mockData)));
 
   let layoutProvider = new LayoutProvider(index => {
     if (dataProvider.getSize() > 0) {
       return dataProvider.getDataForIndex(index);
     }
   }, (type, dim, index) => {
-    if (index === 0) {
-      dim.height = Dimensions.get('window').height / 20;
-      dim.width = Dimensions.get('window').width;
-    }
-    else {
+      if (index === 0 ) {
+        dim.height = 50;
+        dim.width = Dimensions.get('window').width;
+      } else {
       dim.height = Dimensions.get('window').height / 12; // height have to set smaller if using forceNonDeterministicRendering otherwise, seems to default to this height if cell is lesses height
       dim.width = Dimensions.get('window').width;
-    }
+      }
   });
 
   // recycler list view 
@@ -72,7 +54,7 @@ const RecyclerListViewPagination = () => {
      thus, make an empty header here and render from overrrideRowRenderer */
     if (index === 0) {
       return (
-        <View style={{ height: 150 }} />
+        <View style={{ height: 50, flex: 1 }} />
       )
     }
     return (
